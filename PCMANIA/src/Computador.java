@@ -5,13 +5,19 @@ public class Computador {
     SistemaOperacional sistema = new SistemaOperacional();
     HardwareBasico hardware = new HardwareBasico();
 
-    public Computador(java.lang.String marca, float preco) {
+
+    public Computador(java.lang.String marca, float preco, SistemaOperacional sistema, HardwareBasico hardware) {
         Marca = marca;
         this.preco = preco;
+        this.sistema = sistema;
+        this.hardware = hardware;
     }
+
 
     public void mostraPCConfigs(){
 
     }
-    public void addMemoriaUSB
+    public void addMemoriaUSB(){
+
+    }
 }
