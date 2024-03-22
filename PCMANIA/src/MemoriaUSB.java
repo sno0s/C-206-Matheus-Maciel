@@ -6,4 +6,7 @@ public class MemoriaUSB {
         this.nome = nome;
         this.capacidade = capacidade;
     }
+
+    public MemoriaUSB() {
+    }
 }

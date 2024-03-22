@@ -6,4 +6,7 @@ public class HardwareBasico {
         this.nome = nome;
         this.capacidade = capacidade;
     }
+
+    public HardwareBasico() {
+    }
 }

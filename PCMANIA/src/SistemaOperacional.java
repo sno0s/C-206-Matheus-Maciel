@@ -6,4 +6,7 @@ public class SistemaOperacional {
         this.nome = nome;
         this.tipo = tipo;
     }
+
+    public SistemaOperacional() {
+    }
 }
