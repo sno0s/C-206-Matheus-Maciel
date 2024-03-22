@@ -1,7 +1,11 @@
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-
+        Scanner entrada = new Scanner(System.in);
+        boolean flag = true;
+        int escolha;
         Computador computadores[] = new Computador[3];
+        Cliente cliente = new Cliente();
 
         //Criando a promoção 1
         SistemaOperacional linuxUbuntu = new SistemaOperacional("Linux Ubuntu", 32);
@@ -30,12 +34,62 @@ public class Main {
         computador3.addMemoriaUSB(M3);
         computadores[2] = computador3;
 
-        //Todos adicionados na lista de computadores.
 
-        computador1.mostraPCConfigs();
+        while(flag){
+            System.out.println("(1)Visualizar promoções\n(2)Cadastrar cliente\n(3)Sair");
+            do {
+                escolha = entrada.nextInt();
+                if(escolha != 1 && escolha != 2 && escolha != 3)
+                    System.out.println("Escolha errada.\n(1)Visualizar promoções\n(2)Cadastrar cliente\n(3)Sair");
+            }while(escolha != 1 && escolha != 2 && escolha != 3);
 
+            switch (escolha){
+                case 1:
+                    int escolha1;
+                    System.out.println("-------> Promoção 1");
+                    computador1.mostraPCConfigs();
+                    System.out.println("-------> Promoção 2");
+                    computador2.mostraPCConfigs();
+                    System.out.println("-------> Promoção 3");
+                    computador3.mostraPCConfigs();
 
+                    System.out.println("Você deseja comprar algum?\n(1)Promoção 1   (2)Promoção 2    (3)Promoção 3");
+                    do {
+                        escolha1 = entrada.nextInt();
+                        if(escolha1 != 1 && escolha1 != 2 && escolha1 != 3){
+                            System.out.println("Escolha Incorreta.\nVocê deseja comprar algum?\n(1)Promoção 1   (2)Promoção 2    (2)Promoção 3");
+                        }
+                    }while(escolha1 != 1 && escolha1 != 2 && escolha1 != 3);
 
+                    if(cliente.nome == null){
+                        System.out.println("\n----------Crie um cadastro primeiro!\n");
+                    }
+                    else{
+
+                    }
+                    break;
+                case 2:
+                    String nome;
+                    long cpf;
+
+                    System.out.println("Digite o nome do cliente: ");
+                    nome = entrada.nextLine();
+                    entrada.nextLine();
+                    System.out.println("Digite o CPF do cliente: ");
+                    cpf = entrada.nextLong();
+
+                    cliente.nome = nome;
+                    cliente.cpf = cpf;
+
+                    System.out.println("Cliente cadastrado!");
+                    break;
+                case 3:
+                    flag = false;
+                    System.out.println("-----Aplicação finalizada.");
+                    break;
+            }
+
+        }
 
     }
 }
