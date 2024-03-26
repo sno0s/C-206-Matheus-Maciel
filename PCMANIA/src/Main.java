@@ -65,10 +65,17 @@ public class Main {
                         System.out.println("\n----------Crie um cadastro primeiro!\n");
                     }
                     else{
-
+                        for(int i=0; i<computadores.length; i++){
+                            if(computadores[i].preco != 0 && i == escolha1){
+                                cliente.calculaTotalCompra(computadores[i].preco);
+                                computadores[i].preco = 0;
+                            }
+                            else if (computadores[i].preco == 0 && i == escolha1)
+                                System.out.println("Computador indisponível ou já comprado.");
+                        }
                     }
                     break;
-                case 2:
+                    case 2:
                     String nome;
                     long cpf;
 
@@ -85,7 +92,18 @@ public class Main {
                     break;
                 case 3:
                     flag = false;
-                    System.out.println("-----Aplicação finalizada.");
+                    if(cliente.cpf == 0)
+                        System.out.println("Nenhum cliente Cadastrado.");
+                    else{
+                        System.out.println("\n------Informações do cliente: \nNome: " + cliente.nome + "\nCPF: " + cliente.cpf );
+                        System.out.println("\n------Computadores adquiridos:");
+                        for(int i=0; i<computadores.length; i++)
+                            if(computadores[i].preco == 0)
+                                computadores[i].mostraPCConfigs();
+                    }
+
+                    System.out.println("\n------Total da compra: " + cliente.valortotal);
+                    System.out.println("\n--------Aplicação finalizada.");
                     break;
             }
 
