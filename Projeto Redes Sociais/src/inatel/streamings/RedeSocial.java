@@ -14,7 +14,8 @@ public abstract class RedeSocial {
     public abstract void postarComentario();
     public void CurtirPublicacao(){
         System.out.println("Curtiu uma publicação!");
+        }
     }
 
 
-}
+
