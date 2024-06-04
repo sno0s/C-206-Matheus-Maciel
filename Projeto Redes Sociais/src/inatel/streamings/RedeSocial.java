@@ -8,6 +8,8 @@ public abstract class RedeSocial {
         this.senha = senha;
         this.numAmigos = numAmigos;
     }
+    public RedeSocial() {
+    }
 
     public abstract void postarFoto();
     public abstract void postarVideo();

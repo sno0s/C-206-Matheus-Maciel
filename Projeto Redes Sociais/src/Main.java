@@ -1,160 +1,60 @@
 import inatel.exceptions.CadastroIncompletoException;
+import inatel.exceptions.UsuarioJaCriadoException;
+import inatel.exceptions.UsuarioSemRedeSocialException;
 import inatel.streamings.*;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
+        boolean running = true;
         Random random = new Random();
+        Scanner entrada = new Scanner(System.in);
+        Usuario user = new Usuario();
 
         //declarando hashset de redes sociais
-
         Set<RedeSocial> redesSociais = new HashSet<RedeSocial>();
 
-        //criando redes sociais
+        while(running){
+            System.out.println("Bem vindo ao projeto de redes sociais, escolha uma das opções abaixo: \n(1)Criar usuário\n(2)Cadastrar rede social\n(3)Mostrar redes sociais\n(4)sair");
+            int choice = entrada.nextInt();
 
-        Instagram insta = new Instagram("123", 23);
-        GooglePlus google = new GooglePlus("234", 72);
-        Facebook face = new Facebook("5767238", 133);
-        Twitter twitter = new Twitter("asdfasd", 78456);
+            switch(choice){
+                case 1:
+                    //Criando novo usuário e tratando os erros que são:
+                    //criar mais de um usuário (não posso fazer isso)
+                    //criar um usuario sem nome ou sem email
+                    //criar um usuario sem redes sociais
 
-        //adicionando no hashset
-
-        redesSociais.add(face);
-        redesSociais.add(twitter);
-        redesSociais.add(insta);
-        redesSociais.add(google);
-
-
-        //criando novo usuario
-        Usuario user = new Usuario("Matheus Maciel", "maathdesigner@outlook.com", redesSociais);
-
-        //mostrando ações em redes sociais
-
-        boolean postarfoto = false;
-        boolean postarvideo = false;
-        boolean postarcomentario = false;
-        boolean compartilhar = false;
-        boolean fazerstreaming = false;
-        boolean curtirpublicacao = false;
-        int limite = 5;
-
-        for(RedeSocial elemento : user.redesSociais){
-
-            if(elemento instanceof Instagram){
-                for (int i = 0; i < 3; i++) {
-                    if(!postarfoto){
-                        elemento.postarFoto();
-                        postarfoto = true;
+                    try {
+                        user = UserInterfaceFunctions.criarUsuario(redesSociais);
+                    } catch (CadastroIncompletoException | UsuarioJaCriadoException | UsuarioSemRedeSocialException e) {
+                        System.out.println(e.getMessage());
                     }
-                    else if (!postarvideo) {
-                        elemento.postarVideo();
-                        postarvideo = true;
+                    break;
+                case 2:
+                    //Cadastrando redes sociais e tratando erros:
+                    try{
+                        redesSociais = UserInterfaceFunctions.criarRede(user,redesSociais);
+                    } catch (CadastroIncompletoException | InputMismatchException e){
+                        System.out.println(e.getMessage());
                     }
-                    else if (!postarcomentario){
-                        elemento.postarComentario();
-                        postarcomentario = true;
+
+                    break;
+                case 3:
+                    //mostrando redes sociais e tratando possíveis erros
+                    try{
+                        UserInterfaceFunctions.MostrarRedes(user, redesSociais);
+                    }catch (UsuarioSemRedeSocialException e){
+                        //catch para caso o usuário não tenha nenhuma rede social cadastrada.
+                        System.out.println(e.getMessage());
                     }
-                    else if (!curtirpublicacao)
-                    {
-                        elemento.CurtirPublicacao();
-                        curtirpublicacao = true;
-                    }
-                }
+                    break;
+                case 4:
+                    //Finalizando o programa.
+                    running = false;
+                    break;
             }
-
-            if(elemento instanceof GooglePlus){
-                for (int i = 0; i < 3; i++) {
-                    if (!fazerstreaming){
-                        ((GooglePlus) elemento).fazStreaming();
-                        fazerstreaming = true;
-                    }
-                    else if (!compartilhar){
-                        ((GooglePlus) elemento).Compartilhar();
-                        compartilhar = true;
-                    }
-                    else if(!postarfoto){
-                        elemento.postarFoto();
-                        postarfoto = true;
-                    }
-                    else if (!postarvideo) {
-                        elemento.postarVideo();
-                        postarvideo = true;
-                    }
-                    else if (!postarcomentario){
-                        elemento.postarComentario();
-                        postarcomentario = true;
-                    }
-                    else if (!curtirpublicacao)
-                    {
-                        elemento.CurtirPublicacao();
-                        curtirpublicacao = true;
-                    }
-                }
-            }
-
-            if(elemento instanceof Facebook){
-                for (int i = 0; i < 3; i++) {
-                    if (!fazerstreaming){
-                        ((Facebook) elemento).fazStreaming();
-                        fazerstreaming = true;
-                    }
-                    else if (!compartilhar){
-                        ((Facebook) elemento).Compartilhar();
-                        compartilhar = true;
-                    }
-                    else if(!postarfoto){
-                        elemento.postarFoto();
-                        postarfoto = true;
-                    }
-                    else if (!postarvideo) {
-                        elemento.postarVideo();
-                        postarvideo = true;
-                    }
-                    else if (!postarcomentario){
-                        elemento.postarComentario();
-                        postarcomentario = true;
-                    }
-                    else if (!curtirpublicacao)
-                    {
-                        elemento.CurtirPublicacao();
-                        curtirpublicacao = true;
-                    }
-                }
-            }
-
-            if(elemento instanceof Twitter){
-                for (int i = 0; i < 3; i++) {
-                    if (!compartilhar){
-                        ((Twitter) elemento).Compartilhar();
-                        compartilhar = true;
-                    }
-                    else if(!postarfoto){
-                        elemento.postarFoto();
-                        postarfoto = true;
-                    }
-                    else if (!postarvideo) {
-                        elemento.postarVideo();
-                        postarvideo = true;
-                    }
-                    else if (!postarcomentario){
-                        elemento.postarComentario();
-                        postarcomentario = true;
-                    }
-                    else if (!curtirpublicacao)
-                    {
-                        elemento.CurtirPublicacao();
-                        curtirpublicacao = true;
-                    }
-                }
-            }
-
-
         }
-
-
     }
 }

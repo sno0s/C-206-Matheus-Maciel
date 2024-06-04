@@ -14,4 +14,11 @@ public class Usuario extends HashSet {
         this.email = email;
         this.redesSociais = redesSociais;
     }
+
+    public Usuario() {
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
