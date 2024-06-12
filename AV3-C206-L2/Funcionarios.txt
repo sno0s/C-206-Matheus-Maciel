@@ -1,0 +1,30 @@
+++ Alunos ++
+Matheus
+Computação
+1971
+66.0
+++ Alunos ++
+Giuliana Batistella
+Software
+792
+42.0
+++ Alunos ++
+Beatriz Vaz
+Computação
+777
+77.0
+++ Alunos ++
+Lucas Abdalgne
+Telecomunicações
+2912
+92.0
+++ Alunos ++
+teste
+Software
+1
+19.0
+++ Alunos ++
+a
+Software
+1
+1.0
