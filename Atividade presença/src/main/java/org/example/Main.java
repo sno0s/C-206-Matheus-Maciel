@@ -13,6 +13,7 @@ public class Main {
         ArrayList<Cliente> clientes;
 
         System.out.println("Bem vindo! Escolha uma das opções abaixo: ");
+
         while(running){
             System.out.println("(1)Cadastrar cliente\n(2)Listar clientes\n(3)Ordenar clientes em ordem alfabética\n(4)Ordenar clientes de Z-A\n(5)Sair\n");
             int escolha = entrada.nextInt();

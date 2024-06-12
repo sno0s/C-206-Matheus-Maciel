@@ -1,0 +1,16 @@
+++ Produtos ++
+s
+123.0
+Decoração
+++ Produtos ++
+asd
+123.0
+Higiene
+++ Produtos ++
+kwk
+1.0
+Comida
+++ Produtos ++
+asd
+2.0
+Higiene
